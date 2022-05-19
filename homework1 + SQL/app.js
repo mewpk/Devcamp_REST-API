@@ -85,7 +85,7 @@ app.put("/api/product/:id", async (req, res) => {
 
 })
 
-app.put("/api/product/:id", async (req, res) => {
+app.delete("/api/product/:id", async (req, res) => {
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root', // <== ระบุใหถูกตอง
@@ -95,7 +95,7 @@ app.put("/api/product/:id", async (req, res) => {
     })
     try {
         const id = req.params.id;
-        const data = await connection.query(`update items set product_name = "${req.body.product_name}", stock_left = "${req.body.stock_left}" , category = "${req.body.category}" where id = ${id}`);
+        const data = await connection.query(`delete from items where id = ${id};`);
 
         res.json({
             status: "success",
