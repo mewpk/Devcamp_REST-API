@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser');
+const data = require('./user.json')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
@@ -24,6 +25,18 @@ app.post("/user",(req,res)=>{
     else{
         res.status(400).send("Not")
     }
+   
+})
+
+app.get("/user",(req,res)=>{
+    
+        res.status(200).json({
+            code : 1,
+            message : "OK",
+            users : data 
+        }
+            )
+
    
 })
 
